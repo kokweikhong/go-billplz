@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+      }
+
+      input[type="submit"] {
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/create-bill" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="kok wei" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="kokweikhong@gmail.com"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" value="60167785788" />
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" id="amount" value="3.00" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description">
+This is testing create bill for billplz</textarea
+        >
+      </div>
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

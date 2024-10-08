@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -43,6 +44,9 @@ func (bp *Billplz) CreateBill(params *CreateBillParams) (*CreateBillResponse, er
 	if err != nil {
 		return nil, errors.New("failed to read response during CreateBill")
 	}
+
+	fmt.Println(string(body))
+
 	res := new(CreateBillResponse)
 	if err := json.Unmarshal(body, res); err != nil {
 		return nil, errors.New("failed to unmarshal response during CreateBill")
