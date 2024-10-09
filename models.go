@@ -46,3 +46,9 @@ type BillplzCallback struct {
 	TransactionStatus string `json:"transaction_status"`
 	XSignature        string `json:"x_signature"`
 }
+
+type GetBillResponse struct {
+	ID    string `json:"id"`
+	Paid  bool   `json:"paid"`
+	State string `json:"state"`
+}

@@ -17,7 +17,10 @@ Billplz redirects (Payment Completion) the customer back to your site if redirec
 
 ## Billplz API
 
-- [ ] Create Bill
-- [ ] Get Bill
-- [ ] Get Bills
-- [ ] Delete Bill
+https://www.billplz.com/api#introduction
+
+v3/bills
+
+- [x] Create Bill
+- [x] Get Bill
+- [x] Delete Bill

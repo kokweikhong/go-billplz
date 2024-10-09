@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	billAPIURL = "/api/v3/bills"
+	billAPIURL = "/v3/bills"
 )
 
 func (bp *Billplz) CreateBill(params *CreateBillParams) (*CreateBillResponse, error) {
@@ -53,4 +53,54 @@ func (bp *Billplz) CreateBill(params *CreateBillParams) (*CreateBillResponse, er
 	}
 
 	return res, nil
+}
+
+// GetBill returns a bill by ID
+func (bp *Billplz) GetBill(id string) (*GetBillResponse, error) {
+	url := bp.config.apiURL + billAPIURL + "/" + id
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, errors.New("failed to create request during GetBill")
+	}
+
+	req.Header.Set("Authorization", "Basic "+basicAuth(bp.config.apiKey))
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, errors.New("failed to do request during GetBill")
+	}
+
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, errors.New("failed to read response during GetBill")
+	}
+
+	res := new(GetBillResponse)
+	if err := json.Unmarshal(body, res); err != nil {
+		return nil, errors.New("failed to unmarshal response during GetBill")
+	}
+
+	return res, nil
+}
+
+// DeleteBill deletes a bill by ID
+func (bp *Billplz) DeleteBill(id string) error {
+	url := bp.config.apiURL + billAPIURL + "/" + id
+	req, err := http.NewRequest("DELETE", url, nil)
+	if err != nil {
+		return errors.New("failed to create request during DeleteBill")
+	}
+
+	req.Header.Set("Authorization", "Basic "+basicAuth(bp.config.apiKey))
+
+	client := &http.Client{}
+	_, err = client.Do(req)
+	if err != nil {
+		return errors.New("failed to do request during DeleteBill")
+	}
+
+	return nil
 }
